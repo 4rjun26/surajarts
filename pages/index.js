@@ -31,29 +31,47 @@ function index() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-   const notify = () =>{ 
-   const elem1=document.getElementById("name");
-   const elem2=document.getElementById("email");
-   const elem3=document.getElementById("message");
-   if(elem1.value.length*elem2.value.length*elem3.value.length>0){
-    toast("Message Sent");
-    elem1.value="";elem2.value="";elem3.value="";
-   }
-   else{
-    alert("Please enter all credentials!");
-   }
-};
+  useEffect(()=>{
+    showimages();
+  }, []);
 
-function sample(){
-  alert("asd");
+function showhands(){
+  var arr=document.getElementsByClassName('Home_handcont__1QkXD');
+  for(let i=0;i<arr.length;i++){
+    arr[i].style.display="block";
+  }
+  var arr=document.getElementsByClassName('Home_imagecont__qtHNS');
+  for(let i=0;i<arr.length;i++){
+    arr[i].style.display="none";
+  }
+  arr=document.getElementById('hand');
+  arr.style.color="black";
+  arr.style.textDecoration="underline";
+  arr=document.getElementById('gal');
+  arr.style.color="gray";
+  arr.style.textDecoration="none";
+  handleClose();
+}
+function showimages(){
+  var arr=document.getElementsByClassName('Home_handcont__1QkXD');
+  for(let i=0;i<arr.length;i++){
+    arr[i].style.display="none";
+  }
+  var arr=document.getElementsByClassName('Home_imagecont__qtHNS');
+  for(let i=0;i<arr.length;i++){
+    arr[i].style.display="block";
+  }
+
+  arr=document.getElementById('gal');
+  arr.style.color="black";
+  arr.style.textDecoration="underline";
+  arr=document.getElementById('hand');
+  arr.style.color="gray";
+  arr.style.textDecoration="none";
+
+  handleClose();
 }
 
-function closeoverlay(){
-  const elem=document.getElementById("overlay");
-  // elem.style.display="none";
-  elem.style.opacity=0;
-  elem.style.translate="0px -100vh";
-}
 
   
 function copytoclipboard(){
@@ -120,7 +138,7 @@ function copytoclipboard(){
 
          <Head>
          <link href='https://fonts.googleapis.com/css?family=Alegreya SC' rel='stylesheet' />
-         <link href='https://fonts.googleapis.com/css?family=Great Vibes' rel='stylesheet' />
+         <link href='https://fonts.googleapis.com/css?family=Corinthia' rel='stylesheet' />
          <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/1.1.7/typed.min.js" />
      </Head>
      <ToastContainer 
@@ -139,9 +157,8 @@ function copytoclipboard(){
        <div className={styles.desktopnav} id='desktopnav'>
         <ul>
           <li><Link href={'#hero'} className={styles.navlinks}>Home</Link></li>
-          <li><Link href={'#gallery'} className={styles.navlinks}>Gallery</Link></li>
-          <li><Link href={'#sculptings'} className={styles.navlinks}>Sculptings</Link></li>
-          <li><Link href={'#prints'} className={styles.navlinks}>Prints</Link></li>
+          <li><Link href={'#gallery'} onClick={showimages} className={styles.navlinks}>Gallery</Link></li>
+          <li><Link href={'#gallery'} onClick={showhands} className={styles.navlinks}>Handscapes</Link></li>
         </ul>
         <div className={styles.linkscont}>
         <button onClick={handleClose}><AiFillInstagram/></button>
@@ -155,16 +172,15 @@ function copytoclipboard(){
      
     
 {/* Hero section */}
-<Offcanvas show={show} onHide={handleClose}>
+<Offcanvas style={{"height":"100vh","background":"whitesmoke"}} show={show} onHide={handleClose} scroll={'true'}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title><h1 style={{"fontFamily":"Great Vibes"}}>SurajArts</h1></Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
         <ul className={styles.mobul}>
           <li><Link href={'#hero'} onClick={handleClose} className={styles.hamlinks}>Home</Link></li>
-          <li><Link href={'#gallery'} onClick={handleClose} className={styles.hamlinks}>Gallery</Link></li>
-          <li><Link href={'#sculptings'} onClick={handleClose} className={styles.hamlinks}>Sculptings</Link></li>
-          <li><Link href={'#prints'} onClick={handleClose} className={styles.hamlinks}>Prints</Link></li>
+          <li><Link href={'#gallery'} onClick={showimages} className={styles.hamlinks}>Gallery</Link></li>
+          <li><Link href={'#gallery'} onClick={showhands} className={styles.hamlinks}>Handscapes</Link></li>
         </ul>
         <div className={styles.socialcont}>
         <button onClick={handleClose}><AiFillInstagram/></button>
@@ -177,11 +193,11 @@ function copytoclipboard(){
 
 <div className={styles.namecont}>
   <h1>SurajArts</h1>
- <p style={{"fontWeight":"bold","scale":"1.2"}}>Paintings | Sculptures | Prints</p>
+ <p style={{"fontWeight":"bold","scale":"1.2"}}>Paintings | Sculptures</p>
  <p><q>Every artist dips his brush in his own soul, and paints his own nature into his pictures.</q> - Henry Ward Beecher</p>
 </div>
 <div className={styles.modelcont}>
-<Image className={styles.img} src={'/hands.png'} width={1000} height={1000} />
+<Image className={styles.img} src={'/sample.jpg'} width={1000} height={1000} />
 </div>
 
 </section>
@@ -189,7 +205,10 @@ function copytoclipboard(){
         <section className={styles.workssection}>
         
           <div className={styles.worktypesdiv} id='gallery'>
-          <h1  style={{"fontFamily":"Alegreya SC"}}>Gallery</h1>
+          <div className={styles.tabsdiv}>
+          <button onClick={showimages} id='gal'>Gallery</button>
+          <button onClick={showhands} id='hand'>Handscapes</button>
+          </div>
         <FluidGrid
         transition={'top 100ms ease-in-out, left 100ms ease-in-out'}
         >
@@ -224,88 +243,41 @@ function copytoclipboard(){
           <Image className={styles.contentimg} src={'/art10.jpg'} width={'1000'} height={'1000'} alt='imp' />
           </div>
          
-          </FluidGrid>
+        {/* Handscapes */}
+          <div className={styles.handcont}>
+          <Image className={styles.contentimg} src={'/hand1.jpg'} width={'1000'} height={'1000'} alt='imp' />
           </div>
-          <br/><br/> <br/><br/>
-          <div className={styles.worktypesdiv} id='sculptings'>
-          <h1  style={{"fontFamily":"Alegreya SC"}}>Sculptings</h1>
-          <FluidGrid
-        transition={'top 100ms ease-in-out, left 100ms ease-in-out'}
-        >
-          <div className={styles.imagecont}>
-          <Image className={styles.contentimg} src={'/art1.jpg'} width={'1000'} height={'1000'} alt='imp' />
+          <div className={styles.handcont}>
+          <Image className={styles.contentimg} src={'/hand2.jpg'} width={'1000'} height={'1000'} alt='imp' />
           </div>
-          <div className={styles.imagecont}>
-          <Image className={styles.contentimg} src={'/art2.jpg'} width={'1000'} height={'1000'} alt='imp' />
+          <div className={styles.handcont}>
+          <Image className={styles.contentimg} src={'/hand3.png'} width={'1000'} height={'1000'} alt='imp' />
           </div>
-          <div className={styles.imagecont}>
-          <Image className={styles.contentimg} src={'/art3.jpg'} width={'1000'} height={'1000'} alt='imp' />
+          <div className={styles.handcont}>
+          <Image className={styles.contentimg} src={'/hand4.jpg'} width={'1000'} height={'1000'} alt='imp' />
           </div>
-          <div className={styles.imagecont}>
-          <Image className={styles.contentimg} src={'/art4.jpg'} width={'1000'} height={'1000'} alt='imp' />
+          <div className={styles.handcont}>
+          <Image className={styles.contentimg} src={'/hand5.jpg'} width={'1000'} height={'1000'} alt='imp' />
           </div>
-          <div className={styles.imagecont}>
-          <Image className={styles.contentimg} src={'/art5.jpg'} width={'1000'} height={'1000'} alt='imp' />
+          <div className={styles.handcont}>
+          <Image className={styles.contentimg} src={'/hand6.jpg'} width={'1000'} height={'1000'} alt='imp' />
           </div>
-          <div className={styles.imagecont}>
-          <Image className={styles.contentimg} src={'/art6.jpg'} width={'1000'} height={'1000'} alt='imp' />
+          <div className={styles.handcont}>
+          <Image className={styles.contentimg} src={'/hand7.jpg'} width={'1000'} height={'1000'} alt='imp' />
           </div>
-          <div className={styles.imagecont}>
-          <Image className={styles.contentimg} src={'/art7.jpg'} width={'1000'} height={'1000'} alt='imp' />
+          <div className={styles.handcont}>
+          <Image className={styles.contentimg} src={'/hand8.jpg'} width={'1000'} height={'1000'} alt='imp' />
           </div>
-          <div className={styles.imagecont}>
-          <Image className={styles.contentimg} src={'/art8.jpg'} width={'1000'} height={'1000'} alt='imp' />
-          </div>
-          <div className={styles.imagecont}>
-          <Image className={styles.contentimg} src={'/art9.jpg'} width={'1000'} height={'1000'} alt='imp' />
-          </div>
-          <div className={styles.imagecont}>
-          <Image className={styles.contentimg} src={'/art10.jpg'} width={'1000'} height={'1000'} alt='imp' />
-          </div>
-         
-          </FluidGrid>
+          <div className={styles.handcont}>
+          <Image className={styles.contentimg} src={'/hand9.png'} width={'1000'} height={'1000'} alt='imp' />
           </div>
 
-          <br/><br/> <br/><br/>
-          <div className={styles.worktypesdiv} id='prints'>
-          <h1  style={{"fontFamily":"Alegreya SC"}}>Prints</h1>
-          <FluidGrid
-        transition={'top 100ms ease-in-out, left 100ms ease-in-out'}
-        >
-          <div className={styles.imagecont}>
-          <Image className={styles.contentimg} src={'/art1.jpg'} width={'1000'} height={'1000'} alt='imp' />
-          </div>
-          <div className={styles.imagecont}>
-          <Image className={styles.contentimg} src={'/art2.jpg'} width={'1000'} height={'1000'} alt='imp' />
-          </div>
-          <div className={styles.imagecont}>
-          <Image className={styles.contentimg} src={'/art3.jpg'} width={'1000'} height={'1000'} alt='imp' />
-          </div>
-          <div className={styles.imagecont}>
-          <Image className={styles.contentimg} src={'/art4.jpg'} width={'1000'} height={'1000'} alt='imp' />
-          </div>
-          <div className={styles.imagecont}>
-          <Image className={styles.contentimg} src={'/art5.jpg'} width={'1000'} height={'1000'} alt='imp' />
-          </div>
-          <div className={styles.imagecont}>
-          <Image className={styles.contentimg} src={'/art6.jpg'} width={'1000'} height={'1000'} alt='imp' />
-          </div>
-          <div className={styles.imagecont}>
-          <Image className={styles.contentimg} src={'/art7.jpg'} width={'1000'} height={'1000'} alt='imp' />
-          </div>
-          <div className={styles.imagecont}>
-          <Image className={styles.contentimg} src={'/art8.jpg'} width={'1000'} height={'1000'} alt='imp' />
-          </div>
-          <div className={styles.imagecont}>
-          <Image className={styles.contentimg} src={'/art9.jpg'} width={'1000'} height={'1000'} alt='imp' />
-          </div>
-          <div className={styles.imagecont}>
-          <Image className={styles.contentimg} src={'/art10.jpg'} width={'1000'} height={'1000'} alt='imp' />
-          </div>
-         
           </FluidGrid>
           </div>
-        
+          <br/><br/> 
+          <div className={styles.contact}>
+            <p>surajphowale03@gmail.com | 9665070303</p>
+          </div>
 
         </section>
     </div>

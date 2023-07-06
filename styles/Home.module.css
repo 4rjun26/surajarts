@@ -1,6 +1,16 @@
 .body{
  background: whitesmoke;
 }
+.contact{
+  width: 100%;
+  height: 30px;
+  text-align: center;
+}
+.contact p{
+  font-size:  16px;
+  color:gray;
+  font-family: Arial, Helvetica, sans-serif;
+}
 .logodiv{
   position: absolute;
   left: 10px;
@@ -107,7 +117,6 @@
 .herosection{
     width:80%;
     padding: 20px;
-    height: 90vh;
     margin:0px auto;
     /* background-image: linear-gradient(to bottom right, whitesmoke,rgba(0, 0, 128, 0.267) , whitesmoke); */
     border-radius: 20px;
@@ -127,7 +136,7 @@
   /* font-size: 6rem; */
   color:rgb(143, 48, 48);
   display: block;
-  font-family: 'Great Vibes';
+  font-family: 'Corinthia';
 }
 .mobul{
   /* text-align: center; */
@@ -158,9 +167,9 @@
   height: 50%;
     transition-duration: 0.5s;
     margin: auto;
-    margin-top: 30px;
+    margin-top: 20px;
 }
-.imagecont{
+.imagecont, .handcont{
 background: black;
 border-radius:20px;
 overflow: hidden;
@@ -168,7 +177,8 @@ overflow: hidden;
 .modelcont img{
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  scale: 1.1;
 }
 .workssection{
   width: 100vw;
@@ -179,22 +189,25 @@ overflow: hidden;
   margin: auto;
   padding-top: 50px;
 }
-.worktypebtn{
-width: 100%;
-height: 40px;
-text-align: center;
+.tabsdiv{
+  width:100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 5px;
 }
-.worktypebtn button{
-  width: 33.33%;
-  height: 100%;
+.tabsdiv button{
   font-size: x-large;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  
-  border: 1px solid black;
+  font-family:"Alegreya SC";
+  padding: 5px;
   background: none;
+  border: none;
+  margin-right:15px;
+  color:gray;
 }
-
+.tabsdiv button:hover{
+  color:black;
+}
 .contentdiv{
   width:100%;
   margin-top: 20px;
