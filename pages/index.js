@@ -5,18 +5,17 @@ import Head from 'next/head';
 import Button from 'react-bootstrap/Button';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import FluidGrid from 'react-fluid-grid'
-
+import ReactReadMoreReadLess from "react-read-more-read-less";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import * as THREE from 'three';
-import {OrbitControls} from "three/examples/jsm/controls/OrbitControls"
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 import Link from 'next/link'
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { AiFillInstagram } from 'react-icons/ai';
 import { AiFillFacebook } from 'react-icons/ai';
 import { AiFillLinkedin } from 'react-icons/ai';
-
+import Accordion from 'react-bootstrap/Accordion';
+import Collapse from 'react-bootstrap/Collapse';
+import { Tabs,Tab} from 'react-bootstrap'; 
 import Image from 'next/image';
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -32,31 +31,16 @@ function index() {
   const handleShow = () => setShow(true);
 
   useEffect(()=>{
-    showimages();
+    showPics("gal");
   }, []);
 
-function showhands(){
-  var arr=document.getElementsByClassName('Home_handcont__1QkXD');
-  for(let i=0;i<arr.length;i++){
-    arr[i].style.display="block";
-  }
-  var arr=document.getElementsByClassName('Home_imagecont__qtHNS');
-  for(let i=0;i<arr.length;i++){
-    arr[i].style.display="none";
-  }
-  arr=document.getElementById('hand');
-  arr.style.color="black";
-  arr.style.textDecoration="underline";
-  arr=document.getElementById('gal');
-  arr.style.color="gray";
-  arr.style.textDecoration="none";
-  handleClose();
-}
+
 function showimages(){
   var arr=document.getElementsByClassName('Home_handcont__1QkXD');
   for(let i=0;i<arr.length;i++){
     arr[i].style.display="none";
   }
+  // Home_awacont__MpLIr
   var arr=document.getElementsByClassName('Home_imagecont__qtHNS');
   for(let i=0;i<arr.length;i++){
     arr[i].style.display="block";
@@ -68,6 +52,85 @@ function showimages(){
   arr=document.getElementById('hand');
   arr.style.color="gray";
   arr.style.textDecoration="none";
+
+  handleClose();
+}
+
+function showPics(ind){
+  // making all nones;
+  var x;
+  var arr=document.getElementsByClassName('Home_handcont__1QkXD');
+  for(let i=0;i<arr.length;i++){
+    arr[i].style.display="none";
+  }
+  arr=document.getElementsByClassName('Home_imagecont__qtHNS');
+  for(let i=0;i<arr.length;i++){
+    arr[i].style.display="none";
+  }
+  arr=document.getElementsByClassName('Home_awacont__MpLIr');
+  for(let i=0;i<arr.length;i++){
+    arr[i].style.display="none";
+  }
+  arr=document.getElementsByClassName('Home_ordcont__GOnH5');
+  for(let i=0;i<arr.length;i++){
+    arr[i].style.display="none";
+  }
+
+  x=document.getElementById('gal');
+  x.style.color="gray";
+  x.style.textDecoration="none";
+  x=document.getElementById('hand');
+  x.style.color="gray";
+  x.style.textDecoration="none";
+  x=document.getElementById('awa');
+  x.style.color="gray";
+  x.style.textDecoration="none";
+  x=document.getElementById('ord');
+  x.style.color="gray";
+  x.style.textDecoration="none";
+
+  if(ind==="gal"){
+    // Home_awacont__MpLIr
+    var arr=document.getElementsByClassName('Home_imagecont__qtHNS');
+    for(let i=0;i<arr.length;i++){
+      arr[i].style.display="block";
+    }
+
+    x=document.getElementById('gal');
+  x.style.color="black";
+  x.style.textDecoration="underline";
+  }
+  else if(ind==="exe"){
+    var arr=document.getElementsByClassName('Home_handcont__1QkXD');
+    for(let i=0;i<arr.length;i++){
+      arr[i].style.display="block";
+    }
+
+    x=document.getElementById('hand');
+  x.style.color="black";
+  x.style.textDecoration="underline";
+  }
+  else if(ind==="awa"){
+    var arr=document.getElementsByClassName('Home_awacont__MpLIr');
+    for(let i=0;i<arr.length;i++){
+      arr[i].style.display="block";
+    }
+
+    x=document.getElementById('awa');
+  x.style.color="black";
+  x.style.textDecoration="underline";
+  }
+  else if(ind==="ord"){
+var arr=document.getElementsByClassName('Home_ordcont__GOnH5');
+for(let i=0;i<arr.length;i++){
+  arr[i].style.display="block";
+}
+
+x=document.getElementById('ord');
+x.style.color="black";
+x.style.textDecoration="underline";
+  }
+
 
   handleClose();
 }
@@ -139,6 +202,7 @@ function copytoclipboard(){
          <Head>
          <link href='https://fonts.googleapis.com/css?family=Alegreya SC' rel='stylesheet' />
          <link href='https://fonts.googleapis.com/css?family=Corinthia' rel='stylesheet' />
+         <link href='https://fonts.googleapis.com/css?family=PT Sans Narrow' rel='stylesheet' />
          <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/1.1.7/typed.min.js" />
      </Head>
      <ToastContainer 
@@ -155,16 +219,21 @@ function copytoclipboard(){
         />
    
        <div className={styles.desktopnav} id='desktopnav'>
+        <Image style={{"position":"absolute"}} src={'/logo.png'} width={150} height={75} alt='logo'></Image>
         <ul>
-          <li><Link href={'#hero'} className={styles.navlinks}>Home</Link></li>
-          <li><Link href={'#gallery'} onClick={showimages} className={styles.navlinks}>Gallery</Link></li>
-          <li><Link href={'#gallery'} onClick={showhands} className={styles.navlinks}>Handscapes</Link></li>
+          {/* <li><Link href={'#hero'} className={styles.navlinks}>Home</Link></li> */}
+          <li><Link href={'#hero'} className={styles.navlinks}>About Me</Link></li>
+          <li><Link href={'#hero'} className={styles.navlinks}>Painting Style</Link></li>
+          <li><Link href={'#gallery'} onClick={()=>{showPics("gal")}} className={styles.navlinks}>Gallery</Link></li>
+          <li><Link href={'#gallery'} onClick={()=>{showPics("exe")}} className={styles.navlinks}>Exhibitons</Link></li>
+          <li><Link href={'#gallery'} onClick={()=>{showPics("awa")}} className={styles.navlinks}>Awards</Link></li>
         </ul>
         <div className={styles.linkscont}>
         <button onClick={handleClose}><AiFillInstagram/></button>
         <button onClick={handleClose}><AiFillFacebook/></button>
         <button onClick={handleClose}><AiFillLinkedin/></button>
         </div>
+
       </div>
       <div className={styles.mobnav}>
         <button onClick={handleShow}><RxHamburgerMenu/></button>
@@ -174,13 +243,17 @@ function copytoclipboard(){
 {/* Hero section */}
 <Offcanvas style={{"height":"100vh","background":"whitesmoke"}} show={show} onHide={handleClose} scroll={'true'}>
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title><h1 style={{"fontFamily":"Great Vibes"}}>SurajArts</h1></Offcanvas.Title>
+          <Offcanvas.Title>
+          <Image style={{"position":"absolute","top":"-10px"}}  src={'/logo.png'} width={200} height={100} alt='logo'></Image>
+          </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
         <ul className={styles.mobul}>
           <li><Link href={'#hero'} onClick={handleClose} className={styles.hamlinks}>Home</Link></li>
-          <li><Link href={'#gallery'} onClick={showimages} className={styles.hamlinks}>Gallery</Link></li>
-          <li><Link href={'#gallery'} onClick={showhands} className={styles.hamlinks}>Handscapes</Link></li>
+          <li><Link href={'#about'} onClick={handleClose} className={styles.hamlinks}>About</Link></li>
+          <li><Link href={'#gallery'} onClick={()=>{showPics("gal")}} className={styles.hamlinks}>Gallery</Link></li>
+          <li><Link href={'#gallery'} onClick={()=>{showPics("exe")}} className={styles.hamlinks}>Exhibitons</Link></li>
+          <li><Link href={'#gallery'} onClick={()=>{showPics("awa")}} className={styles.hamlinks}>Awards</Link></li>
         </ul>
         <div className={styles.socialcont}>
         <button onClick={handleClose}><AiFillInstagram/></button>
@@ -193,21 +266,54 @@ function copytoclipboard(){
 
 <div className={styles.namecont}>
   <h1>SurajArts</h1>
- <p style={{"fontWeight":"bold","scale":"1.2"}}>Paintings | Sculptures</p>
- <p><q>Every artist dips his brush in his own soul, and paints his own nature into his pictures.</q> - Henry Ward Beecher</p>
+ <p style={{"fontWeight":"bold","scale":"1.2"}}>Artist</p>
+ {/* <p><q>Every artist dips his brush in his own soul, and paints his own nature into his pictures.</q> - Henry Ward Beecher</p> */}
 </div>
 <div className={styles.modelcont}>
-<Image className={styles.img} src={'/sample.jpg'} width={1000} height={1000} />
+<Image className={styles.img} src={'/sample1.jpeg'} width={1000} height={1000} />
 </div>
 
 </section>
-    <br/><br/>
+    <section id='about' className={styles.aboutsection}>
+      <div className={styles.aboutcont}>
+      
+          <h1>About Me</h1>
+          <ReactReadMoreReadLess
+                charLimit={200}
+                readMoreText={"More"}
+                readLessText={"Less"}
+                readMoreStyle={{"fontWeight":"bold","cursor":"pointer"}}
+                readLessStyle={{"fontWeight":"bold","cursor":"pointer"}}
+            >
+                    I am Suraj P Howale, a renowned artist known for my hyper-realistic portraiture. With a deep passion for drawing since childhood, I have dedicated the past decade to honing my skills and achieving excellence in my craft. Specializing in the subject of Indian Sadhus, I find profound satisfaction in capturing intricate details, from their facial features to the nuances of their drapery. By selecting this subject, I aim to keep Indian culture alive and promote it on a global stage. With numerous national and international awards to my name, my colored pencil masterpieces bring these captivating portraits to life, evoking a sense of awe and reverence.
+            </ReactReadMoreReadLess>
+   
+        </div>
+        <br /><br />
+        <div className={styles.aboutcont}>
+      
+          <h1>Painting Style</h1>
+          <ReactReadMoreReadLess
+                charLimit={200}
+                readMoreText={"More"}
+                readLessText={"Less"}
+                readMoreStyle={{"fontWeight":"bold","cursor":"pointer"}}
+                readLessStyle={{"fontWeight":"bold","cursor":"pointer"}}
+            >
+          Indian Sadhus, Portraits, Landscapes               
+            </ReactReadMoreReadLess>
+   
+        </div>
+    </section>
         <section className={styles.workssection}>
         
           <div className={styles.worktypesdiv} id='gallery'>
           <div className={styles.tabsdiv}>
-          <button onClick={showimages} id='gal'>Gallery</button>
-          <button onClick={showhands} id='hand'>Handscapes</button>
+          <button onClick={()=>{showPics('gal')}} id='gal'>Gallery</button>
+          <button onClick={()=>{showPics('exe')}} id='hand'>Exhibitons</button>
+          <button onClick={()=>{showPics('awa')}} id='awa'>Awards</button>
+          <button onClick={()=>{showPics('ord')}} id='ord'>Orders</button>
+          
           </div>
         <FluidGrid
         transition={'top 100ms ease-in-out, left 100ms ease-in-out'}
@@ -243,34 +349,129 @@ function copytoclipboard(){
           <Image className={styles.contentimg} src={'/art10.jpg'} width={'1000'} height={'1000'} alt='imp' />
           </div>
          
-        {/* Handscapes */}
+        {/* Exibitons */}
           <div className={styles.handcont}>
-          <Image className={styles.contentimg} src={'/hand1.jpg'} width={'1000'} height={'1000'} alt='imp' />
+          <Image className={styles.contentimg} src={'/exe1.jpeg'} width={'1000'} height={'1000'} alt='imp' />
           </div>
           <div className={styles.handcont}>
-          <Image className={styles.contentimg} src={'/hand2.jpg'} width={'1000'} height={'1000'} alt='imp' />
+          <Image className={styles.contentimg} src={'/exe2.jpeg'} width={'1000'} height={'1000'} alt='imp' />
           </div>
           <div className={styles.handcont}>
-          <Image className={styles.contentimg} src={'/hand3.png'} width={'1000'} height={'1000'} alt='imp' />
+          <Image className={styles.contentimg} src={'/exe3.jpeg'} width={'1000'} height={'1000'} alt='imp' />
           </div>
           <div className={styles.handcont}>
-          <Image className={styles.contentimg} src={'/hand4.jpg'} width={'1000'} height={'1000'} alt='imp' />
+          <Image className={styles.contentimg} src={'/exe4.jpeg'} width={'1000'} height={'1000'} alt='imp' />
           </div>
           <div className={styles.handcont}>
-          <Image className={styles.contentimg} src={'/hand5.jpg'} width={'1000'} height={'1000'} alt='imp' />
+          <Image className={styles.contentimg} src={'/exe5.jpeg'} width={'1000'} height={'1000'} alt='imp' />
           </div>
-          <div className={styles.handcont}>
-          <Image className={styles.contentimg} src={'/hand6.jpg'} width={'1000'} height={'1000'} alt='imp' />
+
+        {/* Awards */}
+        <div className={styles.awacont}>
+          <Image className={styles.contentimg} src={'/awa1.jpeg'} width={'1000'} height={'1000'} alt='imp' />
           </div>
-          <div className={styles.handcont}>
-          <Image className={styles.contentimg} src={'/hand7.jpg'} width={'1000'} height={'1000'} alt='imp' />
+          <div className={styles.awacont}>
+          <Image className={styles.contentimg} src={'/awa2.jpeg'} width={'1000'} height={'1000'} alt='imp' />
           </div>
-          <div className={styles.handcont}>
-          <Image className={styles.contentimg} src={'/hand8.jpg'} width={'1000'} height={'1000'} alt='imp' />
+          <div className={styles.awacont}>
+          <Image className={styles.contentimg} src={'/awa3.jpeg'} width={'1000'} height={'1000'} alt='imp' />
           </div>
-          <div className={styles.handcont}>
-          <Image className={styles.contentimg} src={'/hand9.png'} width={'1000'} height={'1000'} alt='imp' />
+          <div className={styles.awacont}>
+          <Image className={styles.contentimg} src={'/awa4.jpeg'} width={'1000'} height={'1000'} alt='imp' />
           </div>
+          <div className={styles.awacont}>
+          <Image className={styles.contentimg} src={'/awa5.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+
+        {/* Orders */}
+          <div className={styles.ordcont}>
+          <Image className={styles.contentimg} src={'/ord1.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.ordcont}>
+          <Image className={styles.contentimg} src={'/ord2.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.ordcont}>
+          <Image className={styles.contentimg} src={'/ord3.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.ordcont}>
+          <Image className={styles.contentimg} src={'/ord4.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.ordcont}>
+          <Image className={styles.contentimg} src={'/ord5.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.ordcont}>
+          <Image className={styles.contentimg} src={'/ord6.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.ordcont}>
+          <Image className={styles.contentimg} src={'/ord7.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.ordcont}>
+          <Image className={styles.contentimg} src={'/ord8.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.ordcont}>
+          <Image className={styles.contentimg} src={'/ord9.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.ordcont}>
+          <Image className={styles.contentimg} src={'/ord10.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.ordcont}>
+          <Image className={styles.contentimg} src={'/ord11.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.ordcont}>
+          <Image className={styles.contentimg} src={'/ord12.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.ordcont}>
+          <Image className={styles.contentimg} src={'/ord13.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.ordcont}>
+          <Image className={styles.contentimg} src={'/ord14.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.ordcont}>
+          <Image className={styles.contentimg} src={'/ord15.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.ordcont}>
+          <Image className={styles.contentimg} src={'/ord16.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.ordcont}>
+          <Image className={styles.contentimg} src={'/ord17.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.ordcont}>
+          <Image className={styles.contentimg} src={'/ord18.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.ordcont}>
+          <Image className={styles.contentimg} src={'/ord19.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.ordcont}>
+          <Image className={styles.contentimg} src={'/ord20.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.ordcont}>
+          <Image className={styles.contentimg} src={'/ord21.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.ordcont}>
+          <Image className={styles.contentimg} src={'/ord22.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.ordcont}>
+          <Image className={styles.contentimg} src={'/ord23.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.ordcont}>
+          <Image className={styles.contentimg} src={'/ord24.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.ordcont}>
+          <Image className={styles.contentimg} src={'/ord25.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.ordcont}>
+          <Image className={styles.contentimg} src={'/ord26.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.ordcont}>
+          <Image className={styles.contentimg} src={'/ord27.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.ordcont}>
+          <Image className={styles.contentimg} src={'/ord28.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.ordcont}>
+          <Image className={styles.contentimg} src={'/ord29.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+
 
           </FluidGrid>
           </div>

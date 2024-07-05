@@ -32,7 +32,8 @@
  position: fixed;
   overflow: hidden;
   z-index: 100;
-  /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
+  
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 .mobnav{
   width:100vw;
@@ -42,7 +43,7 @@
  position: fixed;
   overflow: hidden;
   z-index: 100;
-  /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   display: none;
   align-items: center;
 }
@@ -82,7 +83,7 @@
   border: none;
   cursor: pointer;
   font-size: larger;
-  font-family: 'Sora';
+  font-family: 'PT Sans Narrow';
   text-decoration: none;
 }
 .navlinks:hover{
@@ -98,7 +99,7 @@
   border: none;
   cursor: pointer;
   font-size: larger;
-  font-family: 'Sora';
+  font-family: 'PT Sans Narrow';
   text-decoration: none;
 }
 .socialcont{
@@ -169,7 +170,7 @@
     margin: auto;
     margin-top: 20px;
 }
-.imagecont, .handcont{
+.imagecont, .handcont, .awacont, .ordcont{
 background: black;
 border-radius:20px;
 overflow: hidden;
@@ -177,10 +178,15 @@ overflow: hidden;
 .modelcont img{
   width: 100%;
   height: 100%;
+  transition-duration: 0.5s;
+  border-radius: 50%;
   object-fit: contain;
+}
+.modelcont img:hover{
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
   scale: 1.1;
 }
-.workssection{
+.workssection , .aboutsection{
   width: 100vw;
   padding:10px;
 }
@@ -197,7 +203,7 @@ overflow: hidden;
   padding: 5px;
 }
 .tabsdiv button{
-  font-size: x-large;
+  font-size: medium;
   font-family:"Alegreya SC";
   padding: 5px;
   background: none;
@@ -238,12 +244,29 @@ overflow: hidden;
   opacity:0.4;
   transform: scale(1.2);
 }
+.aboutcont{
+  width: 83%;
+  margin: auto;
+  text-align: left;
+  font-family:"Alegreya SC";
+}
+.aboutcont h1{
+
+  color:rgb(143, 48, 48);
+}
+.aboutcont p{
+  
+  font-size: large;
+}
 @media (max-width:300px){
   .namecont h1{
     font-size: 60px;
   }
 }
 @media (max-width:900px) {
+  .aboutcont{
+    width: 100%;
+  }
   .desktopnav{
     display: none;
   }
