@@ -365,6 +365,69 @@ function copytoclipboard(){
           <div className={styles.handcont}>
           <Image className={styles.contentimg} src={'/exe5.jpeg'} width={'1000'} height={'1000'} alt='imp' />
           </div>
+          <div className={styles.handcont}>
+          <Image className={styles.contentimg} src={'/exe6.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.handcont}>
+          <Image className={styles.contentimg} src={'/exe7.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.handcont}>
+          <Image className={styles.contentimg} src={'/exe8.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.handcont}>
+          <Image className={styles.contentimg} src={'/exe9.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.handcont}>
+          <Image className={styles.contentimg} src={'/exe10.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.handcont}>
+          <Image className={styles.contentimg} src={'/exe11.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.handcont}>
+          <Image className={styles.contentimg} src={'/exe12.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.handcont}>
+          <Image className={styles.contentimg} src={'/exe13.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.handcont}>
+          <Image className={styles.contentimg} src={'/exe14.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.handcont}>
+          <Image className={styles.contentimg} src={'/exe15.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.handcont}>
+          <Image className={styles.contentimg} src={'/exe16.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.handcont}>
+          <Image className={styles.contentimg} src={'/exe17.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.handcont}>
+          <Image className={styles.contentimg} src={'/exe18.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.handcont}>
+          <Image className={styles.contentimg} src={'/exe19.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.handcont}>
+          <Image className={styles.contentimg} src={'/exe20.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.handcont}>
+          <Image className={styles.contentimg} src={'/exe21.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.handcont}>
+          <Image className={styles.contentimg} src={'/exe22.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.handcont}>
+          <Image className={styles.contentimg} src={'/exe23.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.handcont}>
+          <Image className={styles.contentimg} src={'/exe24.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.handcont}>
+          <Image className={styles.contentimg} src={'/exe25.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
+          <div className={styles.handcont}>
+          <Image className={styles.contentimg} src={'/exe26.jpeg'} width={'1000'} height={'1000'} alt='imp' />
+          </div>
 
         {/* Awards */}
         <div className={styles.awacont}>
